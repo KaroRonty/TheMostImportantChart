@@ -1,4 +1,3 @@
-source("https://raw.githubusercontent.com/KaroRonty/ShillerGoyalDataRetriever/master/ShillerGoyalDataRetriever.r")
 library(tidyr)
 library(dplyr)
 library(tibble)
@@ -6,6 +5,9 @@ library(stringr)
 library(ggplot2)
 library(forcats)
 
+source("https://raw.githubusercontent.com/KaroRonty/ShillerGoyalDataRetriever/master/ShillerGoyalDataRetriever.r")
+
+# Disable scientific notation
 options(scipen = 1e9)
 
 data <- full_data %>%
@@ -30,9 +32,9 @@ for (i in index) {
 
 # Calculate prediction intervals
 quantiles <- cbind(sapply(leaded %>% select(m1:m600),
-                          function(x) quantile(x, na.rm = T, 0.05)),
+                          function(x) quantile(x, na.rm = TRUE, 0.05)),
                    sapply(leaded %>% select(m1:m600),
-                          function(x) quantile(x, na.rm = T, 0.95)))
+                          function(x) quantile(x, na.rm = TRUE, 0.95)))
 
 # Format data
 quantiles <- quantiles %>%
